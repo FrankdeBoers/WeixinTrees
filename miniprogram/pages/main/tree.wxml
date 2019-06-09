@@ -1,0 +1,57 @@
+<view class="page">
+  <!-- <image class="absolute" src="/images/bg_grass.png" mode="widthFix" style="width:100%;">
+  </image> -->
+
+  <!-- 流动的云 -->
+  <view class="flowingCloud">
+    <image src="/images/cloud1.png" mode="widthFix" style="width:40%;">
+    </image>
+  </view>
+
+  <!-- 静止的云 -->
+  <view class="staticCloud">
+    <image src="/images/cloud2.png" mode="widthFix" style="width:50%;">
+    </image>
+  </view>
+
+  <view class="tree">
+    <image src="{{treePng}}" mode="widthFix" style="width:20%;" bindtap='touchTree' animation="{{animTreeSwingData}}">
+    </image>
+  </view>
+
+  <!-- 浇水壶 -->
+  <view class="waterCan">
+    <image src="/images/water.png" mode="widthFix" style="width:20%;" bindtap='onWaterCanTouched' animation="{{animWaterCan}}" bindanimationstart="{{animationstart}}" bindanimationend="{{animationend}}">
+    </image>
+  </view>
+
+  <!-- 下落的水 -->
+  <view class=" {{showOrHidden?'waterFallShow':'waterFallHide'}}">
+    <image src="/images/waterFull.png" mode="widthFix" style="width:10%;" animation="{{animWaterFall}}">
+    </image>
+  </view>
+
+
+
+
+  <!-- 用户当前水量-->
+  <view class="userinfo">
+    <image open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></image>
+
+    <view>
+      <button class="userinfo-nickname" bindtap="onGetOpenid">{{localExperence}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 用户当前水量-->
+  <view class="userinfo">
+    <image open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" src="/images/forest.png"></image>
+
+    <view>
+      <button class="userinfo-nickname" bindtap="onGetOpenid">{{treesCoount}}
+      </button>
+    </view>
+  </view>
+
+</view>

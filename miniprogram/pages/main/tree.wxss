@@ -1,0 +1,126 @@
+/* miniprogram/main/tree.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+  background: url(https://note.youdao.com/yws/api/personal/file/C721EA270E244623BB38A4DB0793B506?method=download&shareKey=465145e3e8f292883b67b0bd8598a66a) no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+/* 浇水壶的style */
+
+.waterCan {
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  position: absolute;
+  z-index: 3;
+}
+
+/* 样式：水滴下落 */
+
+.waterFallHide {
+  display: none;
+  bottom: 280px;
+  left: 0;
+  right: 0;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  position: absolute;
+  z-index: 3;
+}
+
+.waterFallShow {
+  display: block;
+  bottom: 280px;
+  left: 0;
+  right: 0;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  position: absolute;
+  z-index: 3;
+}
+
+/* 样式：静止的云 */
+
+.staticCloud {
+  position: absolute;
+  z-index: 3;
+  width: 40%;
+  height: 40%;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+}
+
+/* 样式：流动的云 
+  从左到右，8S完成*/
+
+.flowingCloud {
+  position: absolute;
+  z-index: 3;
+  width: 40%;
+  height: 40%;
+  top: 99px;
+  right: 0;
+  bottom: 0;
+  animation: cloud 8s linear infinite;
+}
+
+@keyframes cloud {
+  from {
+    transform: translate3d(-700rpx, 0, 0);
+  }
+
+  to {
+    transform: translate3d(300rpx, 0, 0);
+  }
+}
+
+.tree {
+  bottom: 400rpx;
+  left: 0;
+  right: 0;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  position: absolute;
+  z-index: 3;
+}
+
+.userinfo {
+  margin-top: 40rpx;
+  height: 100rpx;
+  width: 40%;
+  background: #67ccd3;
+  display: flex;
+  flex-direction: row;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  transition: all 300ms ease;
+}
+
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+  background: #67ccd3;
+  background-size: cover;
+}
+
+.userinfo-nickname {
+  font-weight: bolder;
+  font-size: 32rpx;
+  color: #10737a;
+  background: #67ccd3;
+  background-size: cover;
+}

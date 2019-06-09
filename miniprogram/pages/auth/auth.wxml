@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="page__bd">
+    <!-- <view class="page">
+      <image class="image_frame" src="/images/bg_tree.png" mode="widthFix"
+      style="width:{{ images[index].width }}rpx; height:{{ images[index].height }}rpx;">
+      </image>
+    </view> -->
+
+    <button class="authstyle" hover-class="btn-hover" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+      授权并进入
+    </button>
+
+  </view>
+</view>
