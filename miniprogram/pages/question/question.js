@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    questions: qs.questions
+    questions: qs.questions,
+    correctcount: 0
   },
 
   /**
@@ -118,7 +119,7 @@ setNewQuestion: function(question, favorite){
     correctid: '',
     wrongid: '',
     disable: '',
-    pending: false
+    pending: false,
   })
 },
 selectAnswer: function(evt){
@@ -126,7 +127,9 @@ selectAnswer: function(evt){
   let selected = evt.currentTarget.dataset.id
   let act = this.data.answer
   if (selected == act){
+    let tempCount = this.data.correctcount + 1
     this.setData({
+      correctcount: tempCount ,
       correctid: selected,
       disable: 'disabled',
       pending: true
@@ -138,6 +141,7 @@ selectAnswer: function(evt){
   else{
     this.setData({wrongid: selected})
   }
+  console.log('question.js:', "correctcount:" + this.data.correctcount)
 },  
 addFavorite: function(){
   let isFavorite = questioncontrol.toggleFavorite()
