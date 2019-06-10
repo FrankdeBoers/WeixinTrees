@@ -26,6 +26,8 @@ page{
   border-radius: 30rpx;
   border: solid white 8rpx;
   margin: 30rpx;
+  line-height: 1.5em;
+  text-align: left; 
 }
 
 

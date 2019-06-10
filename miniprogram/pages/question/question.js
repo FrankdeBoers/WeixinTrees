@@ -139,7 +139,15 @@ selectAnswer: function(evt){
     }, 1000)
   }
   else{
-    this.setData({wrongid: selected})
+    this.setData({
+      wrongid: selected,
+      disable: 'disabled',
+      pending: true
+    })
+
+    setTimeout(function(){
+      self.nextQuestion()
+    }, 1000)
   }
   console.log('question.js:', "correctcount:" + this.data.correctcount)
 },  
