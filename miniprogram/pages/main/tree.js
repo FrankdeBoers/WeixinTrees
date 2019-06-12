@@ -39,6 +39,14 @@ Page({
   onLoad: function(options) {
     var that = this;
 
+    // 答完题后，需要将答题得分上传至服务器
+    // that.setData({
+    //   scoreforquestion: options.score
+    // });
+    let scoreforquestion = options.score;
+    that.awardMoreWaterForQuestion(scoreforquestion);
+
+    console.log('tree.js', "scoreforquestion:" + scoreforquestion);
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -286,7 +294,8 @@ Page({
           usedexp: 0,
           trees: myTrees,
           avatar: myAvatar,
-          lastawardtime: nowTime
+          lastawardtime: nowTime,
+          lastanswertime: "2016/6/10 00:00:00"
         },
         success(res) {
           // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
@@ -350,7 +359,7 @@ Page({
     console.log(TAG, "距离上次领取:" + diffHours + " 小时");
 
     if (diffHours >= 0) { // 可以再次领取
-      that.awardMoreWater();
+      that.awardMoreWater(10);
 
     } else { // 无法再次领取
 
@@ -358,7 +367,7 @@ Page({
   },
 
   // 奖励更多的水，暂时只有登录奖励
-  awardMoreWater: function() {
+  awardMoreWater: function(water) {
     var that = this;
     console.log(TAG, "award4Login  start");
     var nowTime = new Date().toLocaleString('chinese', {
@@ -368,7 +377,7 @@ Page({
       // data 传入需要局部更新的数据
       // 因为登录而获得的奖励，登录时间也要更新
       data: {
-        exp: _.inc(10),
+        exp: _.inc(water),
         lastawardtime: nowTime
       },
       success(res) {
@@ -376,6 +385,32 @@ Page({
         that.updateLocalDataFromServer();
       }
     })
+  },
+
+  // 奖励更多的水，通过答题获得奖励
+  awardMoreWaterForQuestion: function(water) {
+    if (water <= 0) {
+      console.log(TAG, "awardMoreWaterForQuestion  return");
+      return;
+    }
+    var that = this;
+    console.log(TAG, "awardMoreWaterForQuestion  start");
+    var nowTime = new Date().toLocaleString('chinese', {
+      hour12: false
+    });
+    db.collection('trees').doc(docid).update({
+      // data 传入需要局部更新的数据
+      // 因为登录而获得的奖励，登录时间也要更新
+      data: {
+        exp: _.inc(water),
+        lastanswertime: nowTime
+      },
+      success(res) {
+        console.log(TAG, res);
+        that.updateLocalDataFromServer();
+      }
+    });
+
   },
 
   // 执行浇水操作

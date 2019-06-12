@@ -95,11 +95,14 @@ shuffle: function (a) {
   return a;
 },
 nextQuestion: function(){
+  let that = this;
   if(questioncontrol.finishedYet()){
     wx.showModal({
       title: 'Congratulations!',
       content: '全部学完了',
-    })
+    });
+    let score = this.data.correctcount * 5;
+    that.gotoTree(score);    
     return
   }
   let question = questioncontrol.getNextQuestion()
@@ -226,5 +229,12 @@ addFavorite: function(){
    */
   onShareAppMessage: function () {
   
+  },
+
+
+  gotoTree: function(score) {
+    wx.navigateTo({
+      url: '../main/tree?score=' + score
+    })
   }
 })

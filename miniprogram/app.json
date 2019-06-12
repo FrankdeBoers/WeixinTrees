@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/answerhome/index",
     
-    "pages/index/index",    
+    "pages/index/index",   
+    "pages/answerhome/index",
+     
     "pages/auth/auth",    
     "pages/main/tree",
     "pages/question/question",
