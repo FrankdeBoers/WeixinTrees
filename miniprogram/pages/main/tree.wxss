@@ -59,6 +59,25 @@ page {
   bottom: 0;
 }
 
+/* 样式：完成任务 */
+
+.question {
+  position: absolute;
+  z-index: 3;
+  width: 30%;
+  height: 30%;
+  left: 40px;
+  bottom: 10rpx;
+    bottom: 50px;
+  left: 0;
+  right: 0;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  position: absolute;
+  z-index: 3;
+}
+
 /* 样式：流动的云 
   从左到右，8S完成*/
 

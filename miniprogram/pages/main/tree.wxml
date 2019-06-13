@@ -14,6 +14,9 @@
     </image>
   </view>
 
+
+
+
   <view class="tree">
     <image src="{{treePng}}" mode="widthFix" style="width:20%;" bindtap='touchTree' animation="{{animTreeSwingData}}">
     </image>
@@ -22,6 +25,11 @@
   <!-- 浇水壶 -->
   <view class="waterCan">
     <image src="/images/water.png" mode="widthFix" style="width:20%;" bindtap='onWaterCanTouched' animation="{{animWaterCan}}" bindanimationstart="{{animationstart}}" bindanimationend="{{animationend}}">
+    </image>
+  </view>
+
+  <view class="question">
+    <image src="/images/question.png" mode="widthFix" style="width:50%;">
     </image>
   </view>
 

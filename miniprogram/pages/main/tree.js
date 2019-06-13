@@ -40,9 +40,6 @@ Page({
     var that = this;
 
     // 答完题后，需要将答题得分上传至服务器
-    // that.setData({
-    //   scoreforquestion: options.score
-    // });
     let scoreforquestion = options.score;
     that.awardMoreWaterForQuestion(scoreforquestion);
 
