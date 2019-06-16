@@ -30,7 +30,8 @@ Page({
     water: 0,
     localExperence: '0g',
     usedWater: 0,
-    treesCoount: 'trees: 0'
+    treesCoount: 'trees: 0',
+    lastanswertime: "2016/6/10 00:00:00"
   },
 
   /**
@@ -185,7 +186,26 @@ Page({
   },
 
   onQuestionTouched: function() {
-    this.gotoAnswer();
+    var lastAnswerTime = this.data.lastAnswerTime;
+    var nowDate = new Date().toLocaleString('chinese', {
+      hour12: false
+    });
+    console.log(TAG, "onQuestionTouched nowTime:" + nowDate);
+
+    var nowTime = new Date(nowDate);
+    var diffHours = (nowTime - lastAnswerTime) / (1000 * 3600);
+    console.log(TAG, "onQuestionTouched diffHours:" + diffHours + " 小时");
+
+    if (diffHours >= 24) { // 可以再次领取
+      this.gotoAnswer();
+    } else {
+      wx.showModal({
+        title: 'Try tomorrow!',
+        content: 'Only one chance one day',
+        confirmText: "OK",
+        showCancel: false,
+      });
+    }
   },
 
   // 创建水壶动画
@@ -334,7 +354,8 @@ Page({
             that.doAward(lastAwardTime, serverExp);
 
             that.setData({
-              localExperence: res.data[0].exp + 'g'
+              localExperence: res.data[0].exp + 'g',
+              lastAnswerTime: new Date(res.data[0].lastanswertime)
             });
             console.log(TAG, "serverExp:" + serverExp);
           }
