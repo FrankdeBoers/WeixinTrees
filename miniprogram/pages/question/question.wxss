@@ -28,6 +28,7 @@ page{
   margin: 30rpx;
   line-height: 1.5em;
   text-align: left; 
+  background-color: whitesmoke;
 }
 
 

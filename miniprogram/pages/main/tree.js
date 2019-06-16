@@ -40,8 +40,8 @@ Page({
     var that = this;
 
     // 答完题后，需要将答题得分上传至服务器
-    let scoreforquestion = options.score;
-    that.awardMoreWaterForQuestion(scoreforquestion);
+    var scoreforquestion = options.score;
+    this.awardMoreWaterForQuestion(options.score);
 
     console.log('tree.js', "scoreforquestion:" + scoreforquestion);
     // 获取用户信息
@@ -182,6 +182,10 @@ Page({
     this.refreshList();
     // 更新服务器数据，-10
     this.reduceServerWater();
+  },
+
+  onQuestionTouched: function() {
+    this.gotoAnswer();
   },
 
   // 创建水壶动画
@@ -355,7 +359,7 @@ Page({
     var diffHours = (nowTime - mLastAwardTime) / (1000 * 3600);
     console.log(TAG, "距离上次领取:" + diffHours + " 小时");
 
-    if (diffHours >= 0) { // 可以再次领取
+    if (diffHours >= 24) { // 可以再次领取
       that.awardMoreWater(10);
 
     } else { // 无法再次领取
@@ -385,28 +389,26 @@ Page({
   },
 
   // 奖励更多的水，通过答题获得奖励
-  awardMoreWaterForQuestion: function(water) {
-    if (water <= 0) {
-      console.log(TAG, "awardMoreWaterForQuestion  return");
-      return;
+  awardMoreWaterForQuestion: function(waterQuestion) {
+    if (waterQuestion >= 0) {
+      var that = this;
+      console.log(TAG, "awardMoreWaterForQuestion  start " + waterQuestion);
+      var nowTime = new Date().toLocaleString('chinese', {
+        hour12: false
+      });
+      db.collection('trees').doc(docid).update({
+        // data 传入需要局部更新的数据
+        // 因为登录而获得的奖励，登录时间也要更新
+        data: {
+          exp: _.inc(parseInt(waterQuestion)),
+          lastanswertime: nowTime
+        },
+        success(res) {
+          console.log(TAG, "awardMoreWaterForQuestion:" + res);
+          that.updateLocalDataFromServer();
+        }
+      });
     }
-    var that = this;
-    console.log(TAG, "awardMoreWaterForQuestion  start");
-    var nowTime = new Date().toLocaleString('chinese', {
-      hour12: false
-    });
-    db.collection('trees').doc(docid).update({
-      // data 传入需要局部更新的数据
-      // 因为登录而获得的奖励，登录时间也要更新
-      data: {
-        exp: _.inc(water),
-        lastanswertime: nowTime
-      },
-      success(res) {
-        console.log(TAG, res);
-        that.updateLocalDataFromServer();
-      }
-    });
 
   },
 
@@ -463,15 +465,22 @@ Page({
       that.setData({
         treePng: "/images/tree_2.png"
       });
-    } else if (b > 6){
+    } else if (b > 6) {
       that.setData({
         treePng: "/images/tree_3.png"
       });
     }
 
-    that.setData ({
+    that.setData({
       treesCoount: 'trees:' + h
     });
+  },
+
+
+  gotoAnswer: function() {
+    wx.navigateTo({
+      url: '../question/question?type=sequence'
+    })
   }
 
 

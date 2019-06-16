@@ -97,11 +97,14 @@ shuffle: function (a) {
 nextQuestion: function(){
   let that = this;
   if(questioncontrol.finishedYet()){
+    let score = this.data.correctcount * 5;
+
     wx.showModal({
       title: 'Congratulations!',
-      content: '全部学完了',
+      content: 'You get ' + score + 'g water',
+      confirmText: "OK",    
+      showCancel: false,  
     });
-    let score = this.data.correctcount * 5;
     that.gotoTree(score);    
     return
   }
@@ -234,7 +237,7 @@ addFavorite: function(){
 
   gotoTree: function(score) {
     wx.navigateTo({
-      url: '../main/tree?score=' + score
+      url: '../main/tree?score=' + score,
     })
   }
 })

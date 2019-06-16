@@ -28,10 +28,7 @@
     </image>
   </view>
 
-  <view class="question">
-    <image src="/images/question.png" mode="widthFix" style="width:50%;">
-    </image>
-  </view>
+ 
 
   <!-- 下落的水 -->
   <view class=" {{showOrHidden?'waterFallShow':'waterFallHide'}}">
@@ -60,6 +57,13 @@
       <button class="userinfo-nickname" bindtap="onGetOpenid">{{treesCoount}}
       </button>
     </view>
+  </view>
+
+
+   <!-- 回答问题获得奖励的入口 -->
+  <view class="question">
+    <image src="/images/question.png" mode="widthFix" style="width:16%;" bindtap='onQuestionTouched'>
+    </image>
   </view>
 
 </view>
