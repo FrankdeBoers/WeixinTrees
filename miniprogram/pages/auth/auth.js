@@ -4,22 +4,22 @@ Page({
     openid: '',
   },
   onLoad: function () {
-    this.getOpenid();
+    // this.getOpenid();
   },
   // 获取用户openid
-  getOpenid() {
-    let that = this;
-    wx.cloud.callFunction({
-      name: 'getOpenid',
-      complete: res => {
-        console.log('云函数获取到的openid: ', res.result)
-        var openid = res.result.openId;
-        that.setData({
-          openid: openid
-        })
-      }
-    })
-  },
+  // getOpenid() {
+  //   let that = this;
+  //   wx.cloud.callFunction({
+  //     name: 'getOpenid',
+  //     complete: res => {
+  //       console.log('云函数获取到的openid: ', res.result)
+  //       var openid = res.result.openId;
+  //       that.setData({
+  //         openid: openid
+  //       })
+  //     }
+  //   })
+  // },
   onGotUserInfo(e) {
     console.log(e.detail.errMsg)
     console.log(e.detail.userInfo)
@@ -49,14 +49,14 @@ Page({
           }),
 
             // 进入种树主程序
-            wx.navigateTo({
+            wx.redirectTo({
             url: '../main/tree',
             })
 
 
         } else {
           // 没有授权，进入授权界面
-          wx.navigateTo({
+          wx.redirectTo({
             url: 'auth',
           })
         }

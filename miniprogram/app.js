@@ -50,7 +50,7 @@ App({
 
         } else {
           // 没有授权，进入授权界面
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/auth/auth',
           })
         }

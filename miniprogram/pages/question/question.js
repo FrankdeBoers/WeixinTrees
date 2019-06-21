@@ -236,7 +236,7 @@ addFavorite: function(){
 
 
   gotoTree: function(score) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../main/tree?score=' + score,
     })
   }
