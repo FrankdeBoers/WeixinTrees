@@ -1,10 +1,7 @@
 {
   "pages": [
-    
-    "pages/index/index",   
+    "pages/auth/auth",
     "pages/answerhome/index",
-     
-    "pages/auth/auth",    
     "pages/main/tree",
     "pages/question/question",
     "pages/about/about",
