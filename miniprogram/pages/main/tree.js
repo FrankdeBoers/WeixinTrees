@@ -205,15 +205,15 @@ Page({
     var diffHours = (nowTime - lastAnswerTime) / (1000 * 3600);
     console.log(TAG, "onQuestionTouched diffHours:" + diffHours + " 小时");
 
-    if (diffHours >= 20) { // 可以再次领取
-      this.gotoAnswer();
-    } else {
+    if (diffHours <= 24) { // 可以再次领取
       wx.showModal({
         title: 'Try tomorrow!',
         content: 'Only one chance one day',
         confirmText: "OK",
         showCancel: false,
       });
+    } else {
+      this.gotoAnswer();
     }
   },
 
